@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customised Pen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  <style>
+      /* Base styles for the body and fonts */
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #fce4ec;
+        color: #4a4a4a;
+      }
+
+      /* Top announcement bar styling */
+      .header-top {
+        background-color: #d81b60;
+        color: white;
+      }
+
+      /* Fancy button styling for consistency */
+      .btn-fancy {
+        background-color: #f48fb1;
+        color: #880e4f;
+        border: 2px solid #880e4f;
+        transition: all 0.3s ease;
+      }
+      .btn-fancy:hover {
+        background-color: #ec407a;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Product card hover effects */
+      .product-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        background-color: #fff;
+      }
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Icon hover effects */
+      .icon-hover:hover {
+        transform: scale(1.2);
+        transition: transform 0.3s ease;
+      }
+
+      /* Hamburger icon animations */
+      .hamburger-icon .line {
+        transition: all 0.3s ease-in-out;
+      }
+
+      .hamburger-icon.open .line:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .hamburger-icon.open .line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger-icon.open .line:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* Mobile menu display and transition */
+      #mobile-menu {
+        display: none;
+        transform: translateX(100%); /* Start off-screen to the right */
+        z-index: 60; /* Higher than header's z-50 to ensure it's on top */
+      }
+      #mobile-menu.active {
+        display: block;
+        transform: translateX(0); /* Slide in */
+      }
+
+      /* Media query for general small screen adjustments */
+      @media (max-width: 767px) {
+        .header-top {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        .header-top span {
+          display: block; /* Make code span take full width for better readability */
+        }
+      }
+
+      /* Keyframe animations */
+      @keyframes fadeInMoveUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInMoveUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+      .animate-fade-in-up.delay-200 {
+        animation-delay: 0.2s;
+      }
+      .animate-fade-in-up.delay-400 {
+        animation-delay: 0.4s;
+      }
+
+      /* Additional responsiveness tweaks */
+      @media (max-width: 640px) {
+        .hero-text {
+          font-size: 1.5rem !important; /* Smaller hero title on very small screens */
+        }
+        .hero-subtext {
+          font-size: 0.875rem !important; /* Adjust subtext */
+        }
+        .product-image {
+          height: 10rem !important; /* Adjust product heights for mobile */
+        }
+      }
+    </style>
+</head>
+<body class="bg-pink-200 min-h-screen flex items-center justify-center">
+  
+
+  <div class="bg-white shadow-lg rounded-2xl p-6 max-w-md w-full text-center">
+    <!-- Pen Image -->
+    <img src="https://tse4.mm.bing.net/th/id/OIP.Q36x1G4cTpNjRQILKFowrAHaHa?pid=Api&P=0&h=180" 
+         alt="Customised Pen" 
+         class="mx-auto w-40 mb-4">
+
+    <!-- Title -->
+    <h2 class="text-2xl font-bold text-gray-800 mb-2">Customised Pen</h2>
+    <p class="text-gray-600 mb-4">Add your name and make it unique ✨</p>
+
+    <!-- Input for Name -->
+    <input id="nameInput" 
+           type="text" 
+           placeholder="Enter your name" 
+           class="border rounded-lg w-full px-3 py-2 mb-4 focus:ring-2 focus:ring-pink-400 outline-none">
+
+    <!-- Preview -->
+    <div class="bg-pink-50 border border-pink-200 rounded-lg p-4 mb-4">
+      <p class="text-gray-500">Preview:</p>
+      <p id="previewName" class="font-semibold text-lg text-pink-600">Your Name</p>
+    </div>
+
+    <!-- Button -->
+    <button class="bg-pink-500 text-white px-5 py-2 rounded-xl hover:bg-pink-600 transition">
+      Add to Cart 🛒
+    </button>
+  </div>
+
+  <script>
+    // Live preview of name
+    const input = document.getElementById("nameInput");
+    const preview = document.getElementById("previewName");
+
+    input.addEventListener("input", () => {
+      preview.textContent = input.value || "Your Name";
+    });
+  </script>
+
+</body>
+</html>

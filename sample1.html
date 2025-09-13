@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customised Pen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-200 via-pink-100 to-pink-200">
+  
+
+  <!-- Main Box -->
+  <div class="w-full max-w-3xl bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl p-8 flex flex-col items-center">
+    
+    <!-- Image -->
+    <img src="https://i.pinimg.com/736x/50/7e/e6/507ee620357a914e8c9a783a15add0a8.jpg" 
+         alt="Customised Pens" 
+         class="rounded-2xl shadow-md mb-6  max-h-64 object-cover hover:scale-105 transition-transform duration-500">
+
+    <!-- Title -->
+    <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Customised Pen ✨</h1>
+    <p class="text-gray-600 mb-5">Add your name and make it unique</p>
+
+    <!-- Input -->
+    <input 
+      type="text" 
+      placeholder="Enter your name" 
+      class="w-full px-5 py-3 mb-5 text-lg border border-pink-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-pink-400 shadow-sm">
+
+    <!-- Live Preview -->
+    <div class="w-full bg-pink-50 p-4 rounded-xl border border-pink-200 shadow-md mb-6 text-center">
+      <span class="font-medium text-gray-700">Preview:</span>
+      <span id="preview" class="text-pink-600 font-bold text-xl ml-2">Your Name</span>
+    </div>
+
+    <!-- Button -->
+    <button 
+      class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold text-lg py-3 px-6 rounded-xl shadow-lg transform hover:scale-105 transition">
+      Place your order!!
+    </button>
+  </div>
+
+  <script>
+    // Update live preview
+    const input = document.querySelector("input");
+    const preview = document.querySelector("#preview");
+    input.addEventListener("input", () => {
+      preview.textContent = input.value || "Your Name";
+    });
+  </script>
+</body>
+</html>

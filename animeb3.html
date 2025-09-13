@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./image/bloosomlogo.jpg" type="image/jpg" />
+    <title>Bloosom Notes</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Base styles for the body and fonts */
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #fce4ec;
+        color: #4a4a4a;
+      }
+
+      /* Top announcement bar styling */
+      .header-top {
+        background-color: #d81b60;
+        color: white;
+      }
+
+      /* Fancy button styling for consistency */
+      .btn-fancy {
+        background-color: #f48fb1;
+        color: #880e4f;
+        border: 2px solid #880e4f;
+        transition: all 0.3s ease;
+      }
+      .btn-fancy:hover {
+        background-color: #ec407a;
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Product card hover effects */
+      .product-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        background-color: #fff;
+      }
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Icon hover effects */
+      .icon-hover:hover {
+        transform: scale(1.2);
+        transition: transform 0.3s ease;
+      }
+
+      /* Hamburger icon animations */
+      .hamburger-icon .line {
+        transition: all 0.3s ease-in-out;
+      }
+
+      .hamburger-icon.open .line:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .hamburger-icon.open .line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger-icon.open .line:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* Mobile menu display and transition */
+      #mobile-menu {
+        display: none;
+        transform: translateX(100%); /* Start off-screen to the right */
+        z-index: 60; /* Higher than header's z-50 to ensure it's on top */
+      }
+      #mobile-menu.active {
+        display: block;
+        transform: translateX(0); /* Slide in */
+      }
+
+      /* Media query for general small screen adjustments */
+      @media (max-width: 767px) {
+        .header-top {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        .header-top span {
+          display: block; /* Make code span take full width for better readability */
+        }
+      }
+
+      /* Keyframe animations */
+      @keyframes fadeInMoveUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInMoveUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+      .animate-fade-in-up.delay-200 {
+        animation-delay: 0.2s;
+      }
+      .animate-fade-in-up.delay-400 {
+        animation-delay: 0.4s;
+      }
+
+      /* Additional responsiveness tweaks */
+      @media (max-width: 640px) {
+        .hero-text {
+          font-size: 1.5rem !important; /* Smaller hero title on very small screens */
+        }
+        .hero-subtext {
+          font-size: 0.875rem !important; /* Adjust subtext */
+        }
+        .product-image {
+          height: 10rem !important; /* Adjust product heights for mobile */
+        }
+      }
+    </style>
+</head>
+<body class="lg:overflow-x-hidden md:overflow-x-hidden sm:overflow-x-hidden">
+    <div class="header-top text-center py-2 text-sm md:text-base font-semibold">
+      45% off ₹179+ or 40% off ₹49+ | Code:
+      <span class="font-bold">BLOOSOMNOTES</span> 🌸
+      <button
+        class="ml-2 px-3 py-1 text-sm bg-white text-pink-700 rounded-full hover:bg-pink-100 transition duration-300"
+      >
+        Apply
+      </button>
+    </div>
+
+    <header
+      class="sticky top-0 z-50 bg-[#fce4ec] shadow-md py-4 px-4 sm:px-8 md:px-12"
+    >
+      <div class="flex items-center justify-between">
+        <a
+          href="/"
+          class="flex items-center gap-2 transition duration-300 transform hover:scale-105"
+        >
+          <img
+            src="./image/bloosomlogo.jpg"
+            alt="Bloosom Notes Logo"
+            class="w-12 h-12 rounded-full"
+          />
+          <span class="text-2xl font-bold text-[#d81b60]">Bloosom Notes</span>
+        </a>
+
+        <div
+          class="hidden md:flex items-center border-2 border-[#d81b60] rounded-full overflow-hidden w-full max-w-lg shadow-sm mx-4"
+        >
+          <input
+            type="text"
+            placeholder="Find your perfect stationery..."
+            class="px-4 py-2 w-full outline-none bg-white text-sm"
+          />
+          <button
+            class="p-2 bg-[#d81b60] text-white transition duration-300 transform hover:scale-110"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <nav class="hidden md:flex items-center space-x-4 lg:space-x-8 text-sm">
+          <a href="./form.html"><button class="btn-fancy px-6 py-2 rounded-full font-semibold">
+            Login 
+          </button></a>
+          <a href="./signup.html"><button class="btn-fancy px-6 py-2 rounded-full font-semibold">
+            Sign Up
+          </button></a>
+          <a
+            href="#"
+            class="btn-fancy px-6 py-2 rounded-full font-semibold flex items-center gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              ></path>
+            </svg>
+            Cart
+          </a>
+        </nav>
+
+        <button id="menu-toggle-btn" class="md:hidden p-2">
+          <div class="hamburger-icon space-y-2">
+            <div class="line w-8 h-1 bg-[#d81b60] rounded"></div>
+            <div class="line w-8 h-1 bg-[#d81b60] rounded"></div>
+            <div class="line w-8 h-1 bg-[#d81b60] rounded"></div>
+          </div>
+        </button>
+      </div>
+    </header>
+
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 z-50 bg-white p-6 transition-transform ease-in-out duration-300 overflow-y-auto"
+    >
+      <div class="flex justify-between items-center mb-6">
+        <a href="/" class="flex items-center gap-2">
+          <img
+            src="./image/bloosomlogo.jpg"
+            alt="Bloosom Notes Logo"
+            class="w-10 h-10 rounded-full"
+          />
+          <span class="text-xl font-bold text-[#d81b60]">Bloosom Notes</span>
+        </a>
+        <button id="close-menu-btn" class="p-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-[#d81b60]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <!-- Added search bar to mobile menu for better UX -->
+      <div
+        class="mb-6 flex items-center border-2 border-[#d81b60] rounded-full overflow-hidden shadow-sm"
+      >
+        <input
+          type="text"
+          placeholder="Find your perfect stationery..."
+          class="px-4 py-2 w-full outline-none bg-white text-sm"
+        />
+        <button
+          class="p-2 bg-[#d81b60] text-white transition duration-300 transform hover:scale-110"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+      <nav
+        class="flex flex-col space-y-4 mt-8 text-lg font-semibold text-[#d81b60]"
+      >
+        <a href="#" class="hover:text-pink-400 transition-colors">Stationery</a>
+        <a href="#" class="hover:text-pink-400 transition-colors"
+          >School Supplies</a
+        >
+        <a href="#" class="hover:text-pink-400 transition-colors"
+          >Art Supplies</a
+        >
+        <a href="#" class="hover:text-pink-400 transition-colors"
+          >Craft Material</a
+        >
+        <a href="#" class="hover:text-pink-400 transition-colors"
+          >Best Sellers</a
+        >
+        <a href="#" class="hover:text-pink-400 transition-colors"
+          >Popular on Reels</a
+        >
+        <a href="#" class="hover:text-pink-400 transition-colors"
+          >Shop by Brands</a
+        >
+        <div class="mt-6 flex flex-col space-y-4">
+          <button class="btn-fancy px-6 py-2 rounded-full">Login</button>
+          <button class="btn-fancy px-6 py-2 rounded-full">Sign Up</button>
+          <a
+            href="#"
+            class="btn-fancy px-6 py-2 rounded-full flex items-center justify-center gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M2.25 2.25a.75.75 0 000 1.5h15.541a2.25 2.25 0 012.18 1.543l2.844 8.761A4.5 4.5 0 0118.974 22.5H6.975a4.5 4.5 0 01-4.228-2.996L2.25 2.25zM11.25 15.75a.75.75 0 01-.75-.75v-3.75a.75.75 0 011.5 0v3.75a.75.75 0 01-.75.75zm3.75-.75a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0v-3.75z"
+              />
+            </svg>
+            Cart
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div class="max-w-5xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+</div>  
+
+<div class="flex -mt-16"><div class=" pl-16 overflow-hidden ">
+      <img src=https://i.pinimg.com/736x/65/e1/de/65e1dea1eafecfd9b2a393a3cca44c33.jpg +alt="Cardstock Paper" class="lg:w-[600px]  lg:h-[550px] md:h-[400px] md:w-full sm:w-[640px] sm:h-[768px]  mt-10 border-2 rounded-2xl">
+    </div>
+    
+    <div class="mt-20 pl-16 ">
+    <h1 class="lg:text-2xl sm:text-xs md:text-xl  mb-3 font-bold text-gray-800">
+        🔮 I Became a Genius Civil Servant – Fantasy Redefined
+    </h1>
+     <div>
+        <span class="lg:text-xl md:text:xs sm:text:xs text-gray-500 leading-normal"> 🏛️ Civil Servant, Otherworld Style |  🔮 A Genius Reborn Elsewhere | <br> 🌍 Serving Justice in Another World | 📖 Work, Wit, and Wonder |</span>
+    </div><br>
+     <div
+                class="flex gap-2 text-xl text-yellow-500 border-2  w-16 items-center justify-center rounded-2xl  border-pink-600"
+              >
+                <span class="font-bold">3.7</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.785.57-1.845-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  />
+                </svg>
+              </div><br>
+              <p class="lg:text-3xl  sm:text-1xl font-semibold text-pink-600">₹257.0</p>
+    <p class="text-green-600 font-medium mt-3">In Stock</p>
+    <div class="flex items-center space-x-4 mt-4 ">
+      <span class="font-medium">Quantity:</span>
+      <div class="flex items-center border rounded-lg border-black bg-white">
+        <button class="px-3 py-1 text-lg ">-</button>
+        <input type="text" value="1" class="w-12 text-center border-l border-r outline-none ">
+        <button class="px-3 py-1 text-lg">+</button>
+      </div>
+    </div>
+    <p class="text-lg mt-6 ">Subtotal: <span class="font-bold">₹257.0</span></p>
+    <button class="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg text-lg font-semibold mt-7">
+      🛒 Add to Cart
+    </button>
+  </div>
+  </div>
+</div>
+
+<!-- box -->
+
+<div class="flex gap-20  pl-52 items-center-safe    md:grid-cols-2 sm:grid-cols-1 mt-7">
+  <!-- Box 1 -->
+  <div class=" bg-[#f1f1f1] p-4 rounded-lg shadow-sm ">
+    <p class="font-bold text-gray-800">Get a 10% off coupon</p>
+    <p class="text-sm text-pink-800">Join our email list</p>
+  </div>
+
+  <!-- Box 2 -->
+  <div class=" bg-[#f1f1f1] p-4 rounded-lg shadow-sm">
+    <p class=" text-gray-800 font-bold">Free 30-day returns</p>
+    <p class="text-sm text-pink-800">Return Policy</p>
+  </div>
+
+  <!-- Box 3 -->
+  <div class=" bg-[#f1f1f1] p-4 rounded-lg shadow-sm">
+    <p class="font-bold text-gray-800">Get 30 days to pay with Net 30</p>
+    <p class="text-sm text-pink-800">Apply Now</p>
+  </div>
+
+  <!-- Box 3 -->
+  <div class=" bg-[#f1f1f1] p-4 rounded-lg shadow-sm">
+    <p class="font-bold text-gray-800">Get 30 days to pay with Net 30</p>
+    <p class="text-sm text-pink-800">Apply Now</p>
+  </div>
+
+
+
+  
+</div>
+        
+
+      </section><br><br><br>
+    
+   
+  </body>
+  </html>
